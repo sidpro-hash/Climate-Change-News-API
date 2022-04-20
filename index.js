@@ -76,4 +76,13 @@ app.get('/news/:newspapperId',(req,res) => {
             res.json(specificArticals);
     }).catch((err) => console.log(err));
 });
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
+
 app.listen(PORT,() => console.log(`server rnpmunning on PORT ${PORT}`));
