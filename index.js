@@ -3,9 +3,19 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const { response } = require('express');
+const cors = require('cors')
 
-const app = express();
+const app = express()
+//https://expressjs.com/en/resources/middleware/cors.html
+//https://formio.github.io/formio.js/app/examples/select.html
+//https://stackoverflow.com/questions/62979567/api-request-error-no-access-control-allow-origin-header-is-present-on-the-re
 
+app.use(cors())  // allow reuqest from everywhere
+
+var corsOptions = {
+    origin: 'https://turiya.gsft.protium.net.in/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
 const newspappers = [
     {
@@ -48,7 +58,7 @@ newspappers.forEach(newspapper => {
 })
 
 app.get('/',(req,res) => {
-    res.json('Welcome to Climant Change News API');
+    res.json('Welcome to Climant Change News API, For more info Visit https://github.com/sidpro-hash/Climate-Change-News-API');
 });
 
 app.get('/news',(req,res) => {
